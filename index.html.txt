@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我们的专属纪念册</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: "Microsoft YaHei", sans-serif;
+            background: linear-gradient(135deg, #ffccd5 0%, #ffb6c1 100%);
+            min-height: 100vh;
+            padding: 50px 20px;
+            overflow-x: hidden;
+        }
+        /* 照片轮播区 */
+        .carousel-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            margin: 0 auto 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .carousel-slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 10;
+            transition: background 0.3s;
+        }
+        .carousel-btn:hover {
+            background: #fff;
+        }
+        .prev-btn { left: 15px; }
+        .next-btn { right: 15px; }
+        /* 核心信息区 */
+        .info-section {
+            text-align: center;
+            color: #d63384;
+            margin-bottom: 50px;
+        }
+        .days-count {
+            font-size: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .meet-info {
+            font-size: 20px;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        .wish-text {
+            font-size: 22px;
+            line-height: 1.8;
+            padding: 0 20px;
+        }
+        /* 重要纪念日倒计时 */
+        .countdown-section {
+            width: 80%;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            background: rgba(255,255,255,0.7);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(214,51,132,0.2);
+            color: #d63384;
+        }
+        .countdown-title {
+            font-size: 24px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .countdown-box {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .countdown-item {
+            background: #d63384;
+            color: #fff;
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .countdown-num {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .countdown-text {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        /* 适配手机 */
+        @media (max-width: 500px) {
+            .carousel-container {
+                width: 100%;
+                height: 300px;
+            }
+            .days-count {
+                font-size: 32px;
+            }
+            .wish-text {
+                font-size: 18px;
+            }
+            .countdown-item {
+                width: 60px;
+                height: 60px;
+            }
+            .countdown-num {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 照片轮播 -->
+    <div class="carousel-container">
+        <div class="carousel-slide active">
+            < img src="https://phototj.photo.store.qq.com/psc?/V11nWRfx0U…JImg!!/mnull&bo=QAZgCQAPgBYRCYg!&rf=photolist&t=5" alt="纪念照片1">
+        </div>
+        <div class="carousel-slide">
+            < img src="https://phototj.photo.store.qq.com/psc?/V11nWRfx0U…C4hHz8ZxP*trA!!/b&bo=QAZgCQAPgBYRCYg!&rf=viewer_4.jpg" alt="纪念照片2">
+        </div>
+        <div class="carousel-slide">
+            < img src="https://picsum.photos/400/400?random=3" alt="纪念照片3">
+        </div>
+        <button class="carousel-btn prev-btn">&lt;</button>
+        <button class="carousel-btn next-btn">&gt;</button>
+    </div>
+
+    <!-- 核心信息区 -->
+    <div class="info-section">
+        <div class="days-count" id="daysCount">0</div>
+        <div class="meet-info">我们从 2019-4-21 相遇至今</div>
+        <div class="wish-text">愿我们岁岁年年，朝朝暮暮，平安喜乐，万事胜意</div>
+    </div>
+
+    <!-- 纪念日倒计时 -->
+    <div class="countdown-section">
+        <div class="countdown-title">下一个纪念日（2026-02-12）倒计时</div>
+        <div class="countdown-box">
+            <div class="countdown-item">
+                <div class="countdown-num" id="cdDays">0</div>
+                <div class="countdown-text">天</div>
+            </div>
+            <div class="countdown-item">
+              
